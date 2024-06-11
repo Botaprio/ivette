@@ -1,80 +1,107 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ config('app.name', 'The Wessex School') }} - @yield('title')</title>
+    <!-- Iconic Fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{asset('vendors/iconic-fonts/font-awesome/css/all.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('vendors/iconic-fonts/flat-icons/flaticon.css')}}">
+    <link rel="stylesheet" href="{{asset('vendors/iconic-fonts/cryptocoins/cryptocoins.css')}}">
+    <link rel="stylesheet" href="{{asset('vendors/iconic-fonts/cryptocoins/cryptocoins-colors.css')}}">
+    <!-- Bootstrap core CSS -->
+    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- jQuery UI -->
+    <link href="{{asset('assets/css/jquery-ui.min.css')}}" rel="stylesheet">
+    <!-- Page Specific CSS (Slick Slider.css) -->
+    <link href="{{asset('assets/css/slick.css')}}" rel="stylesheet">
+    <!-- medboard styles -->
+    <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <!-- Page Specific CSS (Morris Charts.css) -->
+    <link href="{{asset('assets/css/morris.css')}}" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('favicon.ico')}}">
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+<body class="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
+<!-- Setting Panel -->
+<!-- Preloader -->
 
-                    </ul>
+<div id="preloader-wrap">
+    <div class="spinner spinner-8">
+        <div class="ms-circle1 ms-child"></div>
+        <div class="ms-circle2 ms-child"></div>
+        <div class="ms-circle3 ms-child"></div>
+        <div class="ms-circle4 ms-child"></div>
+        <div class="ms-circle5 ms-child"></div>
+        <div class="ms-circle6 ms-child"></div>
+        <div class="ms-circle7 ms-child"></div>
+        <div class="ms-circle8 ms-child"></div>
+        <div class="ms-circle9 ms-child"></div>
+        <div class="ms-circle10 ms-child"></div>
+        <div class="ms-circle11 ms-child"></div>
+        <div class="ms-circle12 ms-child"></div>
+    </div>
+</div>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+<!-- Sidebar Navigation Left -->
+@include('layouts.sidebarleft')
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+<!-- Main Content -->
+<main class="body-content">
+    <!-- Navigation Bar -->
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+    @include('layouts.navbar')
+    <div class="ms-content-wrapper">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb pl-0">
+                    <li class="breadcrumb-item"><a href="{{url('/')}}"><i class="material-icons">home</i> Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item">@yield('seccion')</li>
+                    {{--                    <li class="breadcrumb-item"><a href="#">@yield('seccion')</a></li>--}}
+                    <li class="breadcrumb-item active" aria-current="page">{{--@yield('seccion2')--}}</li>
+                </ol>
+            </nav>
+            <div class="ms-panel">
+                <div class="ms-panel-header ms-panel-custome">
+                    <h6 class="">@yield('encabezado')</h6>
+                    <a href=@yield('link') class="ms-text-primary">@yield('link2')</a>
+                </div>
+                <div class="ms-panel-body">
+                    @yield('content')
                 </div>
             </div>
-        </nav>
+        </div>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
     </div>
+    <!-- Body Content Wrapper -->
+</main>
+<!-- SCRIPTS -->
+<!-- Global Required Scripts Start -->
+<script src="{{asset('assets/js/jquery-3')}}.3.1.min.js"></script>
+<script src="{{asset('assets/js/popper.min')}}.js"></script>
+<script src="{{asset('assets/js/bootstrap.min')}}.js"></script>
+<script src="{{asset('assets/js/perfect-scrollbar')}}.js"></script>
+<script src="{{asset('assets/js/jquery-ui')}}.min.js"></script>
+<!-- Global Required Scripts End -->
+<script src="{{asset('assets/js/d3.v3')}}.min.js"></script>
+<script src="{{asset('assets/js/topojson.v1')}}.min.js"></script>
+<script src="{{asset('assets/js/datamaps.all')}}.min.js"></script>
+<!-- Page Specific Scripts Start -->
+<script src="{{asset('assets/js/slick.min')}}.js"></script>
+<script src="{{asset('assets/js/moment.js')}}"></script>
+<script src="{{asset('assets/js/jquery.webticker')}}.min.js"></script>
+<script src="{{asset('assets/js/Chart.bundle')}}.min.js"></script>
+<script src="{{asset('assets/js/index-chart')}}.js"></script>
+<!-- Page Specific Scripts Finish -->
+<script src="{{asset('assets/js/calendar.js')}}"></script>
+<!-- medboard core JavaScript -->
+<script src="{{asset('assets/js/framework.js')}}"></script>
+<!-- Settings -->
+<script src="{{asset('assets/js/settings.js')}}"></script>
 </body>
 </html>
